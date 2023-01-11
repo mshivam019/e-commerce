@@ -11,7 +11,8 @@ import Products from "../components/Products";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
-
+  const [currentPage, setCurrentPage] = useState(2);
+  const postsPerPage =12;
   useEffect(()=>{(async () => {
     // add your Realm App Id to the .env.local file
     const REALM_APP_ID = process.env.NEXT_PUBLIC_REALM_APP_ID;
@@ -25,7 +26,9 @@ export default function Home() {
       console.error(error);
     }
   })()}, []);
-
+  const lastPostIndex = currentPage * postsPerPage;
+  const firstPostIndex = lastPostIndex - postsPerPage;
+  const currentPosts = products.slice(firstPostIndex, lastPostIndex);
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Head>
@@ -40,8 +43,11 @@ export default function Home() {
             category="Tech Wear"
             categoryCount={`${products.length} Products`}
           />
-          <Products products={products} />
-          <Pagination />
+          <Products products={currentPosts} />
+          <Pagination totalPosts={products.length}
+                postsPerPage={postsPerPage}
+                setCurrentPage={setCurrentPage}
+                currentPage={currentPage}/>
         </Container>
         <Footer />
       </div>

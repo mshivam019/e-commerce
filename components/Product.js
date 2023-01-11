@@ -11,8 +11,8 @@ const Product = ({ product }) => {
           <Image
             src={product.image}
             alt={product.name}
-            layout="fill"
-            objectFit="cover"
+            fill
+            style={{objectFit:"cover"}}
             className="absolute z-0"
           />
           <button className="absolute z-10 p-2 rounded-full bg-green-600 text-white mx-5 -mb-4 hover:bg-green-500 focus:outline-none focus:bg-green-500">
