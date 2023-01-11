@@ -5,7 +5,7 @@ const nextConfig = {
 }
 
 module.exports = {
-  env:{
-    NEXT_PUBLIC_REALM_APP_ID:"products-yfpwi",
-  },
+  return {
+    env,
+  }
 }
