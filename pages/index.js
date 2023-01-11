@@ -10,7 +10,7 @@ import Products from "../components/Products";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
-  const [currentPage, setCurrentPage] = useState(2);
+  const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage =12;
   useEffect(()=>{(async () => {
     // add your Realm App Id to the .env.local file
