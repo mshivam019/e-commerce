@@ -95,24 +95,12 @@ const Header = () => {
               <div className="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0">
                 <Link href="/products">Shop</Link>
               </div>
-              <div
-                className="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0"
-                href="#"
-              >
-                <Link href="/products/category">Categories</Link>
+              <div className="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0">
+                <Link href="/category">Categories</Link>
               </div>
-              <a
-                className="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0"
-                href="#"
-              >
-                Contact
-              </a>
-              <a
-                className="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0"
-                href="#"
-              >
-                About
-              </a>
+              <div className="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0">
+              <Link href="/about">About</Link>
+              </div>
             </div>
           </nav>
 

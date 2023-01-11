@@ -9,8 +9,8 @@ const ProductDetail = ({ product }) => {
         <Image
           src={product.image}
           alt={product.name}
-          layout="fill"
-          objectFit="cover"
+          fill
+          style={{objectFit:"cover"}}
           className="absolute z-0 rounded"
         />
       </div>

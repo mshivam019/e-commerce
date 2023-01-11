@@ -1,7 +1,6 @@
 import Head from "next/head";
 import { useState, useEffect } from "react";
 import * as Realm from "realm-web";
-import Category from "../../components/Category";
 import Container from "../../components/Container";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
@@ -37,10 +36,7 @@ export default function Home() {
       <div className="bg-white w-full min-h-screen">
         <Header />
         <Container>
-          <Category
-            category="All Products"
-            categoryCount={`${products.length} Products available`}
-          />
+          
           <Products products={currentPosts} />
           <Pagination totalPosts={products.length}
                 postsPerPage={postsPerPage}

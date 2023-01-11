@@ -9,16 +9,15 @@ const Hero = () => {
       <Image
         src="/images/hero.jpg"
         alt="Hero Image"
-        layout="fill"
-        objectFit="cover"
+        fill
+        style={{objectFit:"cover"}}
         className="absolute z-0"
       />
       <div className="bg-gray-900 bg-opacity-60 flex items-center h-full absolute w-full z-10">
         <div className="px-10 max-w-xl">
           <h2 className="text-2xl text-white font-semibold">Tech Shirts</h2>
           <p className="mt-2 text-gray-400">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque
-            atque recusandae ipsum odio possimus soluta!
+            Get your fashionable geek mode from here!
           </p>
           <Link href={`/products`}>
             <button className="flex items-center mt-4 px-3 py-2 bg-green-600 text-white text-sm uppercase font-medium rounded hover:bg-green-500 focus:outline-none focus:bg-green-500">
