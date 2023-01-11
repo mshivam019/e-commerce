@@ -37,8 +37,7 @@ export default function Home() {
       <div className="bg-white w-full min-h-screen">
         <Header />
         <Container>
-          <Hero />
-
+          <Hero />          
           <Products products={currentPosts} />
           <Pagination totalPosts={products.length}
                 postsPerPage={postsPerPage}
