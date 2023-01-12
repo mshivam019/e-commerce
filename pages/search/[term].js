@@ -2,11 +2,9 @@ import Head from "next/head";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import * as Realm from "realm-web";
-import Category from "../../components/Category";
 import Container from "../../components/Container";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
-import Pagination from "../../components/Pagination";
 import Products from "../../components/Products";
 
 export default function Home() {
@@ -38,12 +36,7 @@ export default function Home() {
       <div className="bg-white w-full min-h-screen">
         <Header />
         <Container>
-          <Category
-            category="Products Found"
-            categoryCount={`${products.length} Products`}
-          />
           <Products products={products} />
-          <Pagination />
         </Container>
         <Footer />
       </div>

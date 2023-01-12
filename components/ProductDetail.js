@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { PlusCircleIcon, MinusCircleIcon } from "@heroicons/react/outline";
 
 const ProductDetail = ({ product }) => {
+  const [count, setCount] = useState(1);
+
+  const handleup = () => {
+    setCount(count + 1);
+  };
+  const handledown = () => {
+    if(count>0)
+    setCount(count -1);
+  };
   return (
     <div className="md:flex md:items-center">
       <div className="w-full h-64 md:w-1/2 lg:h-96 relative">
@@ -23,11 +32,11 @@ const ProductDetail = ({ product }) => {
             Count:
           </label>
           <div className="flex items-center mt-1">
-            <button className="text-gray-500 focus:outline-none focus:text-gray-600">
+            <button className="text-gray-500 focus:outline-none focus:text-gray-600" onClick={handleup}>
               <PlusCircleIcon className="w-5 h-5" />
             </button>
-            <span className="text-gray-700 text-lg mx-2">1</span>
-            <button className="text-gray-500 focus:outline-none focus:text-gray-600">
+            <span className="text-gray-700 text-lg mx-2">{count}</span>
+            <button className="text-gray-500 focus:outline-none focus:text-gray-600" onClick={handledown}>
               <MinusCircleIcon className="w-5 h-5" />
             </button>
           </div>
