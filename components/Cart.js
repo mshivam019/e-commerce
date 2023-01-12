@@ -29,7 +29,7 @@ const Cart = ({ isCartOpen, setIsCartOpen }) => {
             src="/images/react.jpg"
             height={80}
             width={80}
-            objectFit="cover"
+            style={{objectFit:"cover"}}
             className="rounded"
             alt="React T-Shirt"
           />
@@ -54,7 +54,7 @@ const Cart = ({ isCartOpen, setIsCartOpen }) => {
             src="/images/html.jpg"
             height={80}
             width={80}
-            objectFit="cover"
+            style={{objectFit:"cover"}}
             className="rounded"
             alt="HTML T-Shirt"
           />
@@ -79,7 +79,7 @@ const Cart = ({ isCartOpen, setIsCartOpen }) => {
             src="/images/mongodb.png"
             height={80}
             width={80}
-            objectFit="cover"
+            style={{objectFit:"cover"}}
             className="rounded"
             alt="MongoDB T-Shirt"
           />
@@ -111,7 +111,7 @@ const Cart = ({ isCartOpen, setIsCartOpen }) => {
         </form>
       </div>
       <a className="flex items-center justify-center mt-4 px-3 py-2 bg-green-600 text-white text-sm uppercase font-medium rounded hover:bg-green-500 focus:outline-none focus:bg-green-500 cursor-pointer">
-        <span>Chechout</span>
+        <span>Check out</span>
         <ArrowNarrowRightIcon className="w-5 h-5" />
       </a>
     </div>

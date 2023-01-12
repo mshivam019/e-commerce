@@ -10,7 +10,7 @@ const Categories = ({ categorys, categoryCount }) => {
       <span className="mt-3 text-sm text-gray-500">{categoryCount}</span>
       <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 mt-6"> 
       {categorys.map((category) => (
-        <Category category={category} />
+        <Category key={category} category={category} />
       ))}
       </div>
     </div>
