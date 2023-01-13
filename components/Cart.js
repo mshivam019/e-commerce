@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import Image from "next/image";
+import dynamic from 'next/dynamic';
 import Link from "next/link";
 import { Store } from "../utils/Store";
 import {
@@ -120,4 +121,4 @@ const Cart = ({ isCartOpen, setIsCartOpen }) => {
   );
 };
 
-export default Cart;
+export  default dynamic(() => Promise.resolve(Cart), { ssr: false });

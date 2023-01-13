@@ -13,6 +13,10 @@ import Cart from "./Cart";
 const Header = () => {
   const { state } = useContext(Store); 
   const { cart } = state;
+  const [cartItemsCount, setCartItemsCount] = useState(0);
+  useEffect(() => {
+    setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
+  }, [cart.cartItems]);
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -66,9 +70,9 @@ const Header = () => {
               </div>
             </Link>
             <div className="flex items-center justify-end w-full">
-            {cart.cartItems.length > 0 && (
+            {cartItemsCount > 0 && (
                     <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
-                      {cart.cartItems.reduce((a, c) => a + c.quantity, 0)} 
+                      {cartItemsCount}
                     </span>
                   )}
               <button className="text-gray-600 focus:outline-none mx-4 sm:mx-0">
