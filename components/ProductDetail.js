@@ -1,9 +1,27 @@
-import React, { useState } from "react";
+import React, { useState,  useContext  } from "react";
 import Image from "next/image";
+import { Store } from '../utils/Store';
 import { PlusCircleIcon, MinusCircleIcon } from "@heroicons/react/outline";
 
 const ProductDetail = ({ product }) => {
+  const { state, dispatch } = useContext(Store);
   const [count, setCount] = useState(1);
+  if (!product) {
+    return <div>Product Not Found</div>;
+  }
+
+  const addToCartHandler = () => {
+    const existItem = state.cart.cartItems.find((x) => x._id === product._id);
+    const quantity = existItem ? existItem.quantity + count : count;
+
+    if (product.countInStock < quantity) {
+      alert('Sorry. Product is out of stock');
+      return;
+    }
+
+    dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
+  };
+  
 
   const handleup = () => {
     setCount(count + 1);
@@ -42,7 +60,7 @@ const ProductDetail = ({ product }) => {
           </div>
         </div>
         <div className="flex items-center mt-6">
-          <button className="px-8 py-2 bg-green-600 text-white text-sm font-medium rounded hover:bg-green-500 focus:outline-none focus:bg-green-500">
+          <button className="px-8 py-2 bg-green-600 text-white text-sm font-medium rounded hover:bg-green-500 focus:outline-none focus:bg-green-500" onClick={addToCartHandler}>
             Add To Cart
           </button>
         </div>
