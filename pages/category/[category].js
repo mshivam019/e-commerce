@@ -12,21 +12,25 @@ const CategoryDetails = () => {
   const [category, setCategory] = useState();
   const { query } = useRouter();
 
-  useEffect(()=>{(async () => {
-    if (query.category) {
-      // add your Realm App Id to the .env.local file
-      const REALM_APP_ID = process.env.NEXT_PUBLIC_REALM_APP_ID;
-      const app = new Realm.App({ id: REALM_APP_ID });
-      const credentials = Realm.Credentials.anonymous();
-      try {
-        const user = await app.logIn(credentials);
-        const oneCategory = await user.functions.getOneCategory(query.category);
-        setCategory(() => oneCategory);
-      } catch (error) {
-        console.error(error);
+  useEffect(() => {
+    (async () => {
+      if (query.category) {
+        // add your Realm App Id to the .env.local file
+        const REALM_APP_ID = process.env.NEXT_PUBLIC_REALM_APP_ID;
+        const app = new Realm.App({ id: REALM_APP_ID });
+        const credentials = Realm.Credentials.anonymous();
+        try {
+          const user = await app.logIn(credentials);
+          const oneCategory = await user.functions.getOneCategory(
+            query.category
+          );
+          setCategory(() => oneCategory);
+        } catch (error) {
+          console.error(error);
+        }
       }
-    }
-  })()}, [query]);
+    })();
+  }, [query]);
 
   return (
     <>
@@ -39,7 +43,7 @@ const CategoryDetails = () => {
           <div className="bg-white w-full min-h-screen">
             <Header />
             <Container>
-            <Products products={category} />
+              <Products products={category} />
             </Container>
             <Footer />
           </div>

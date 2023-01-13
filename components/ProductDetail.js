@@ -1,6 +1,6 @@
-import React, { useState,  useContext  } from "react";
+import React, { useState, useContext } from "react";
 import Image from "next/image";
-import { Store } from '../utils/Store';
+import { Store } from "../utils/Store";
 import { PlusCircleIcon, MinusCircleIcon } from "@heroicons/react/outline";
 
 const ProductDetail = ({ product }) => {
@@ -15,20 +15,18 @@ const ProductDetail = ({ product }) => {
     const quantity = existItem ? existItem.quantity + count : count;
 
     if (product.countInStock < quantity) {
-      alert('Sorry. Product is out of stock');
+      alert("Sorry. Product is out of stock");
       return;
     }
 
-    dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
+    dispatch({ type: "CART_ADD_ITEM", payload: { ...product, quantity } });
   };
-  
 
   const handleup = () => {
     setCount(count + 1);
   };
   const handledown = () => {
-    if(count>0)
-    setCount(count -1);
+    if (count > 0) setCount(count - 1);
   };
   return (
     <div className="md:flex md:items-center">
@@ -37,7 +35,7 @@ const ProductDetail = ({ product }) => {
           src={product.image}
           alt={product.name}
           fill
-          style={{objectFit:"cover"}}
+          style={{ objectFit: "cover" }}
           className="absolute z-0 rounded"
         />
       </div>
@@ -50,17 +48,26 @@ const ProductDetail = ({ product }) => {
             Count:
           </label>
           <div className="flex items-center mt-1">
-            <button className="text-gray-500 focus:outline-none focus:text-gray-600" onClick={handleup}>
+            <button
+              className="text-gray-500 focus:outline-none focus:text-gray-600"
+              onClick={handleup}
+            >
               <PlusCircleIcon className="w-5 h-5" />
             </button>
             <span className="text-gray-700 text-lg mx-2">{count}</span>
-            <button className="text-gray-500 focus:outline-none focus:text-gray-600" onClick={handledown}>
+            <button
+              className="text-gray-500 focus:outline-none focus:text-gray-600"
+              onClick={handledown}
+            >
               <MinusCircleIcon className="w-5 h-5" />
             </button>
           </div>
         </div>
         <div className="flex items-center mt-6">
-          <button className="px-8 py-2 bg-green-600 text-white text-sm font-medium rounded hover:bg-green-500 focus:outline-none focus:bg-green-500" onClick={addToCartHandler}>
+          <button
+            className="px-8 py-2 bg-green-600 text-white text-sm font-medium rounded hover:bg-green-500 focus:outline-none focus:bg-green-500"
+            onClick={addToCartHandler}
+          >
             Add To Cart
           </button>
         </div>

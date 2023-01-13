@@ -9,18 +9,16 @@ export default function index() {
       <Head>
         <title>About</title>
         <link rel="icon" href="/favicon.ico" />
-      </Head> 
-    <div className="bg-white w-full min-h-screen">
-    <Header />
-      <Container>
-      <h3 className="text-gray-700 text-2xl font-medium block mt-16">
-        About
-      </h3>  
-      </Container>
-      <Footer />
+      </Head>
+      <div className="bg-white w-full min-h-screen">
+        <Header />
+        <Container>
+          <h3 className="text-gray-700 text-2xl font-medium block mt-16">
+            About
+          </h3>
+        </Container>
+        <Footer />
+      </div>
     </div>
-  </div>
-  )
+  );
 }
-
-

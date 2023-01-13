@@ -11,7 +11,7 @@ const Category = ({ category }) => {
             src={`/images/${category}.jpg`}
             alt={category}
             fill
-            style={{objectFit:"cover"}}
+            style={{ objectFit: "cover" }}
             className="absolute z-0"
           />
         </div>

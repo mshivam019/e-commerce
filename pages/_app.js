@@ -1,10 +1,11 @@
-import 'tailwindcss/tailwind.css'
-import { StoreProvider } from '../utils/Store'
+import "tailwindcss/tailwind.css";
+import { StoreProvider } from "../utils/Store";
 function MyApp({ Component, pageProps }) {
   return (
     <StoreProvider>
-  <Component {...pageProps} />
-  </StoreProvider>)
+      <Component {...pageProps} />
+    </StoreProvider>
+  );
 }
 
-export default MyApp
+export default MyApp;

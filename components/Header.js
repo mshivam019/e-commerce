@@ -1,17 +1,18 @@
-import React, { useState, useEffect,useContext} from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Store } from "../utils/Store"
+import { Store } from "../utils/Store";
 import * as Realm from "realm-web";
 import {
   ShoppingCartIcon,
   MenuIcon,
   SearchIcon,
+  UserIcon,
 } from "@heroicons/react/outline";
 import Cart from "./Cart";
 
 const Header = () => {
-  const { state } = useContext(Store); 
+  const { state } = useContext(Store);
   const { cart } = state;
   const [cartItemsCount, setCartItemsCount] = useState(0);
   useEffect(() => {
@@ -23,25 +24,27 @@ const Header = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [autoComplete, setAutoComplete] = useState([]);
 
-  useEffect(()=>{(async () => {
-    if (searchTerm.length) {
-      // add your Realm App Id to the .env.local file
-      const REALM_APP_ID = process.env.NEXT_PUBLIC_REALM_APP_ID;
-      const app = new Realm.App({ id: REALM_APP_ID });
-      const credentials = Realm.Credentials.anonymous();
-      try {
-        const user = await app.logIn(credentials);
-        const searchAutoComplete = await user.functions.searchAutoComplete(
-          searchTerm
-        );
-        setAutoComplete(() => searchAutoComplete);
-      } catch (error) {
-        console.error(error);
+  useEffect(() => {
+    (async () => {
+      if (searchTerm.length) {
+        // add your Realm App Id to the .env.local file
+        const REALM_APP_ID = process.env.NEXT_PUBLIC_REALM_APP_ID;
+        const app = new Realm.App({ id: REALM_APP_ID });
+        const credentials = Realm.Credentials.anonymous();
+        try {
+          const user = await app.logIn(credentials);
+          const searchAutoComplete = await user.functions.searchAutoComplete(
+            searchTerm
+          );
+          setAutoComplete(() => searchAutoComplete);
+        } catch (error) {
+          console.error(error);
+        }
+      } else {
+        setAutoComplete([]);
       }
-    } else {
-      setAutoComplete([]);
-    }
-  })()}, [searchTerm]);
+    })();
+  }, [searchTerm]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -70,18 +73,23 @@ const Header = () => {
               </div>
             </Link>
             <div className="flex items-center justify-end w-full">
-            {cartItemsCount > 0 && (
-                    <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
-                      {cartItemsCount}
-                    </span>
-                  )}
+              <button className="text-gray-600 focus:outline-none px-4 mx-4 sm:mx-0">
+                <UserIcon
+                  onClick={() => router.push("/login")}
+                  className="h-5 w-5"
+                />
+              </button>
               <button className="text-gray-600 focus:outline-none mx-4 sm:mx-0">
                 <ShoppingCartIcon
                   onClick={() => setIsCartOpen(!isCartOpen)}
                   className="h-5 w-5"
                 />
               </button>
-
+              {cartItemsCount > 0 && (
+                <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
+                  {cartItemsCount}
+                </span>
+              )}
               <div className="flex sm:hidden">
                 <button
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -111,7 +119,7 @@ const Header = () => {
                 <Link href="/category">Categories</Link>
               </div>
               <div className="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0">
-              <Link href="/about">About</Link>
+                <Link href="/about">About</Link>
               </div>
             </div>
           </nav>

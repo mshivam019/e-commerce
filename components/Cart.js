@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import Image from "next/image";
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { Store } from "../utils/Store";
 import {
@@ -111,14 +111,17 @@ const Cart = ({ isCartOpen, setIsCartOpen }) => {
               </button>
             </form>
           </div>
-          <a className="flex items-center justify-center mt-4 px-3 py-2 bg-green-600 text-white text-sm uppercase font-medium rounded hover:bg-green-500 focus:outline-none focus:bg-green-500 cursor-pointer">
+          <Link
+            href="/login?redirect=/shipping"
+            className="flex items-center justify-center mt-4 px-3 py-2 bg-green-600 text-white text-sm uppercase font-medium rounded hover:bg-green-500 focus:outline-none focus:bg-green-500 cursor-pointer"
+          >
             <span>Check out</span>
             <ArrowNarrowRightIcon className="w-5 h-5" />
-          </a>
+          </Link>
         </div>
       )}
     </div>
   );
 };
 
-export  default dynamic(() => Promise.resolve(Cart), { ssr: false });
+export default dynamic(() => Promise.resolve(Cart), { ssr: false });
