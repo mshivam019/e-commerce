@@ -2,6 +2,8 @@ import React, { useContext, useState } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Store } from "../utils/Store";
 import {
   XIcon,
@@ -13,7 +15,7 @@ const Cart = ({ isCartOpen, setIsCartOpen }) => {
   const [first, setFirst] = useState("");
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert(first + " this coupon is not valid");
+    toast.error(first + " this coupon is not valid");
   };
   const { state, dispatch } = useContext(Store);
   const {
@@ -26,7 +28,7 @@ const Cart = ({ isCartOpen, setIsCartOpen }) => {
     const existItem = item.quantity;
     const quantity = existItem + 1;
     if (item.countInStock < quantity) {
-      return alert("Sorry. Product is out of stock");
+      return toast.error("Sorry. Product is out of stock");
     }
     dispatch({ type: "CART_ADD_ITEM", payload: { ...item, quantity } });
   };

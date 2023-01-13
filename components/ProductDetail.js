@@ -2,7 +2,8 @@ import React, { useState, useContext } from "react";
 import Image from "next/image";
 import { Store } from "../utils/Store";
 import { PlusCircleIcon, MinusCircleIcon } from "@heroicons/react/outline";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const ProductDetail = ({ product }) => {
   const { state, dispatch } = useContext(Store);
   const [count, setCount] = useState(1);
@@ -10,13 +11,12 @@ const ProductDetail = ({ product }) => {
     return <div>Product Not Found</div>;
   }
 
-  const addToCartHandler = () => {
+  const addToCartHandler = async () => {
     const existItem = state.cart.cartItems.find((x) => x._id === product._id);
     const quantity = existItem ? existItem.quantity + count : count;
 
     if (product.countInStock < quantity) {
-      alert("Sorry. Product is out of stock");
-      return;
+      return toast.error("Sorry. Product is out of stock");
     }
 
     dispatch({ type: "CART_ADD_ITEM", payload: { ...product, quantity } });

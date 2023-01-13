@@ -1,8 +1,14 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { Fragment, useState, useEffect, useContext } from "react";
 import Link from "next/link";
+import { signOut, useSession } from "next-auth/react";
+import Cookies from "js-cookie";
+import { Menu, Transition } from "@headlessui/react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
 import { Store } from "../utils/Store";
 import * as Realm from "realm-web";
+
 import {
   ShoppingCartIcon,
   MenuIcon,
@@ -12,12 +18,18 @@ import {
 import Cart from "./Cart";
 
 const Header = () => {
-  const { state } = useContext(Store);
+  const { status, data: session } = useSession();
+  const { state, dispatch } = useContext(Store);
   const { cart } = state;
   const [cartItemsCount, setCartItemsCount] = useState(0);
   useEffect(() => {
     setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
   }, [cart.cartItems]);
+  const logoutClickHandler = () => {
+    Cookies.remove("cart");
+    dispatch({ type: "CART_RESET" });
+    signOut({ callbackUrl: "/" });
+  };
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -73,13 +85,81 @@ const Header = () => {
               </div>
             </Link>
             <div className="flex items-center justify-end w-full">
-              <button className="text-gray-600 focus:outline-none px-4 mx-4 sm:mx-0">
-                <UserIcon
-                  onClick={() => router.push("/login")}
-                  className="h-5 w-5"
-                />
-              </button>
-              <button className="text-gray-600 focus:outline-none mx-4 sm:mx-0">
+              {status === "loading" ? (
+                "Loading"
+              ) : session?.user ? (
+                <Menu as="div" className="relative inline-block text-left">
+                  <div>
+                    <Menu.Button className="inline-flex w-full justify-center px-4 py-2 text-sm font-medium text-green-600 ">
+                      {session.user.name}
+                      <div className="text-gray-600 focus:outline-none pl-1 mx-4 sm:mx-0">
+                        <UserIcon className="h-5 w-5" />
+                      </div>
+                    </Menu.Button>
+                  </div>
+                  <Transition
+                    as={Fragment}
+                    enter="transition ease-out duration-100"
+                    enterFrom="transform opacity-0 scale-95"
+                    enterTo="transform opacity-100 scale-100"
+                    leave="transition ease-in duration-75"
+                    leaveFrom="transform opacity-100 scale-100"
+                    leaveTo="transform opacity-0 scale-95"
+                  >
+                    <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                      <div className="px-1 py-1 ">
+                        <Menu.Item>
+                          {({ active }) => (
+                            <button
+                              className={`${
+                                active
+                                  ? "bg-green-600 text-white"
+                                  : "text-gray-900"
+                              } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                            >
+                              Account Settings
+                            </button>
+                          )}
+                        </Menu.Item>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <button
+                              className={`${
+                                active
+                                  ? "bg-green-600 text-white"
+                                  : "text-gray-900"
+                              } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                            >
+                              Profile
+                            </button>
+                          )}
+                        </Menu.Item>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <button
+                              onClick={logoutClickHandler}
+                              className={`${
+                                active
+                                  ? "bg-green-600 text-white"
+                                  : "text-gray-900"
+                              } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                            >
+                              Sign Out
+                            </button>
+                          )}
+                        </Menu.Item>
+                      </div>
+                    </Menu.Items>
+                  </Transition>
+                </Menu>
+              ) : (
+                <Link href="/login">
+                  <span className="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0">
+                    Login
+                  </span>
+                </Link>
+              )}
+              <button className="text-gray-600 focus:outline-none px-1 mx-4 sm:mx-0">
                 <ShoppingCartIcon
                   onClick={() => setIsCartOpen(!isCartOpen)}
                   className="h-5 w-5"
@@ -156,6 +236,7 @@ const Header = () => {
         </div>
       </header>
       <Cart isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} />
+      <ToastContainer position="bottom-center" limit={1} />
     </>
   );
 };
