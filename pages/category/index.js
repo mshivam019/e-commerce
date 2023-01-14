@@ -26,7 +26,7 @@ export default function index() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Head>
-        <title>Categories</title>
+        <title>E-Commerce - Categories</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="bg-white w-full min-h-screen">

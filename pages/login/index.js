@@ -44,7 +44,7 @@ export default function LoginScreen() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Head>
-        <title>E-commerce- Login</title>
+        <title>E-commerce - Login</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="bg-white w-full min-h-screen">
@@ -100,7 +100,7 @@ export default function LoginScreen() {
                 Login
               </button>
             </div>
-            <div className="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0">
+            <div className="mt-3 text-blue-600 hover:underline sm:mx-3 sm:mt-0">
               Don&apos;t have an account? &nbsp;
               <Link href={`/register?redirect=${redirect || "/"}`}>
                 Register

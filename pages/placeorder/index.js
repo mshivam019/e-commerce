@@ -68,7 +68,7 @@ export default function PlaceOrderScreen() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Head>
-        <title>E-commerce- Shipping</title>
+        <title>E-commerce - Place Order</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="bg-white w-full min-h-screen">
@@ -77,8 +77,14 @@ export default function PlaceOrderScreen() {
           <CheckOutWizard activeStep={3} />
           <h1 className="mb-4 text-xl">Place Order</h1>
           {cartItems.length === 0 ? (
-            <div className="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0">
-              Cart is empty. <Link href="/">Go shopping</Link>
+            <div>
+              Cart is empty.{" "}
+              <Link
+                className="mt-3 text-blue-600 hover:underline sm:mx-3 sm:mt-0"
+                href="/"
+              >
+                Go shopping
+              </Link>
             </div>
           ) : (
             <div className="grid md:grid-cols-4 md:gap-5">
@@ -90,14 +96,14 @@ export default function PlaceOrderScreen() {
                     {shippingAddress.city}, {shippingAddress.postalCode},{" "}
                     {shippingAddress.country}
                   </div>
-                  <div className="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0">
+                  <div className="mt-3 text-blue-600 hover:underline sm:mx-3 sm:mt-0">
                     <Link href="/shipping">Edit</Link>
                   </div>
                 </div>
                 <div className="rounded-lg w-full shadow-lg p-5">
                   <h2 className="mb-2 text-lg">Payment Method</h2>
                   <div>{paymentMethod}</div>
-                  <div className="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0">
+                  <div className="mt-3 text-blue-600 hover:underline sm:mx-3 sm:mt-0">
                     <Link href="/payment">Edit</Link>
                   </div>
                 </div>
@@ -139,7 +145,7 @@ export default function PlaceOrderScreen() {
                       ))}
                     </tbody>
                   </table>
-                  <div className="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0">
+                  <div className="mt-3 text-blue-600 hover:underline sm:mx-3 sm:mt-0">
                     <Link href="/cart">Edit</Link>
                   </div>
                 </div>

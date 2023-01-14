@@ -174,7 +174,7 @@ function OrderScreen() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Head>
-        <title>E-commerce- Shipping</title>
+        <title>E-commerce - Order</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="bg-white w-full min-h-screen">
@@ -304,7 +304,7 @@ function OrderScreen() {
                         <li>
                           {loadingDeliver && <div>Loading...</div>}
                           <button
-                            className="primary-button w-full"
+                            className="ml-3 flex items-center px-3 py-2 bg-green-600 text-white text-sm uppercase font-medium rounded hover:bg-green-500 focus:outline-none focus:bg-green-500"
                             onClick={deliverOrderHandler}
                           >
                             Deliver Order

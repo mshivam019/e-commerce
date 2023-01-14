@@ -37,7 +37,7 @@ const CategoryDetails = () => {
       {category && (
         <>
           <Head>
-            <title>MongoDB E-Commerce- {query.category}</title>
+            <title>E-Commerce - {query.category}</title>
             <link rel="icon" href="/favicon.ico" />
           </Head>
           <div className="bg-white w-full min-h-screen">

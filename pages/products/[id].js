@@ -35,7 +35,7 @@ const ProductDetails = () => {
       {product && (
         <>
           <Head>
-            <title>MongoDB E-Commerce- {product.name}</title>
+            <title>E-Commerce- {product.name}</title>
             <link rel="icon" href="/favicon.ico" />
           </Head>
           <div className="bg-white w-full min-h-screen">

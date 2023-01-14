@@ -44,7 +44,7 @@ export default function PaymentScreen() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Head>
-        <title>E-commerce- Shipping</title>
+        <title>E-commerce - Payment</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="bg-white w-full min-h-screen">
@@ -53,7 +53,7 @@ export default function PaymentScreen() {
           <CheckOutWizard activeStep={2} />
           <form className="mx-auto max-w-screen-md" onSubmit={submitHandler}>
             <h1 className="mb-4 text-xl">Payment Method</h1>
-            {["PayPal", "Stripe", "CashOnDelivery"].map((payment) => (
+            {["PayPal", "Stripe", "Cash On Delivery"].map((payment) => (
               <div key={payment} className="mb-4">
                 <input
                   name="paymentMethod"
