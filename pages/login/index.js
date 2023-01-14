@@ -1,14 +1,11 @@
 import Link from "next/link";
 import Head from "next/head";
-
 import Container from "../../components/Container";
 import Footer from "../../components/Footer";
-import Header from "../../components/Header";
+import Pheader from "../../components/Pheader";
 import { useForm } from "react-hook-form";
-
 import React, { useEffect } from "react";
 import { signIn, useSession } from "next-auth/react";
-
 import { getError } from "../../utils/error";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
@@ -51,7 +48,7 @@ export default function LoginScreen() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="bg-white w-full min-h-screen">
-        <Header />
+        <Pheader />
         <Container>
           <form
             className="mx-auto max-w-screen-md"
