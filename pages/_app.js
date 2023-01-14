@@ -2,17 +2,21 @@ import "tailwindcss/tailwind.css";
 import { StoreProvider } from "../utils/Store";
 import { useRouter } from "next/router";
 import { SessionProvider, useSession } from "next-auth/react";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
     <SessionProvider session={session}>
       <StoreProvider>
-        {Component.auth ? (
-          <Auth>
+        <PayPalScriptProvider deferLoading={true}>
+          {Component.auth ? (
+            <Auth adminOnly={Component.auth.adminOnly}>
+              <Component {...pageProps} />
+            </Auth>
+          ) : (
             <Component {...pageProps} />
-          </Auth>
-        ) : (
-          <Component {...pageProps} />
-        )}
+          )}
+        </PayPalScriptProvider>
       </StoreProvider>
     </SessionProvider>
   );

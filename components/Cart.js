@@ -48,7 +48,7 @@ const Cart = ({ isCartOpen, setIsCartOpen }) => {
         </button>
       </div>
       {cartItems.length === 0 ? (
-        <div>
+        <div className="inline-flex text-gray-600 hover:underline pr-2 mx-4 sm:mx-0">
           Cart is empty. <Link href="/">Go shopping</Link>
         </div>
       ) : (

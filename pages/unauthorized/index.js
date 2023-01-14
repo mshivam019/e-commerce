@@ -11,16 +11,16 @@ export default function Unauthorized() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
-    <Head>
-      <title>E-commerce- Shipping</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
-    <div className="bg-white w-full min-h-screen">
-      <Pheader />
-      <Container>
-      <h1 className="text-xl">Access Denied</h1>
-      {message && <div className="mb-4 text-red-500">{message}</div>}
-      </Container>
+      <Head>
+        <title>E-commerce- Shipping</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <div className="bg-white w-full min-h-screen">
+        <Pheader />
+        <Container>
+          <h1 className="text-xl">Access Denied</h1>
+          {message && <div className="mb-4 text-red-500">{message}</div>}
+        </Container>
         <Footer />
       </div>
     </div>

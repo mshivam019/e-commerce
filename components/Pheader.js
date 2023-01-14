@@ -50,7 +50,7 @@ const Pheader = () => {
               ) : session?.user ? (
                 <Menu as="div" className="relative inline-block text-left">
                   <div>
-                    <Menu.Button className="inline-flex w-full justify-center rounded-md bg-white px-4 py-2 text-sm font-medium text-green-600 shadow-sm hover:bg-gray-50 focus:outline-none ">
+                    <Menu.Button className="inline-flex w-full justify-center bg-white px-4 py-2 text-sm font-medium text-green-600 hover:bg-gray-50 focus:outline-none  ">
                       {session.user.name}
                       <ChevronDownIcon
                         className="-mr-1 ml-2 h-5 w-5"
@@ -117,7 +117,7 @@ const Pheader = () => {
               ) : (
                 <Link href="/login">
                   <span className="inline-flex text-gray-600 hover:underline pr-2 mx-4 sm:mx-0">
-                    Login
+                    LOGIN
                     <UserIcon className="h-5 w-5" />
                   </span>
                 </Link>
