@@ -6,7 +6,6 @@ import { getError } from "../../utils/error";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import Head from "next/head";
-
 import Container from "../../components/Container";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
