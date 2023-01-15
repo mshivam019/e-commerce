@@ -127,7 +127,7 @@ export default function LoginScreen() {
                   validate: (value) => value === getValues("password"),
                   minLength: {
                     value: 6,
-                    message: "Passwords do not match",
+                    message: "password should be more than 5 chars",
                   },
                 })}
               />
