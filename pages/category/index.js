@@ -6,8 +6,12 @@ import Header from "../../components/Header";
 import Container from "../../components/Container";
 import Footer from "../../components/Footer";
 
+import Loading from "../../components/Loading";
 export default function index() {
   const [categories, setCategories] = useState([]);
+
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     (async () => {
       // add your Realm App Id to the .env.local file
@@ -18,11 +22,12 @@ export default function index() {
         const user = await app.logIn(credentials);
         const allCategories = await user.functions.getAllCategories();
         setCategories(() => allCategories);
+        setLoading(false);
       } catch (error) {
         console.error(error);
       }
     })();
-  }, []);
+  }, [loading]);
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Head>
@@ -32,6 +37,11 @@ export default function index() {
       <div className="bg-white w-full min-h-screen">
         <Header />
         <Container>
+          {loading && (
+            <div className="text-center">
+              <Loading />
+            </div>
+          )}
           <Categories
             categorys={categories}
             categoryCount={`${categories.length} Categories available`}

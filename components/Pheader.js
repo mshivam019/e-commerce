@@ -6,15 +6,10 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
 import { Store } from "../utils/Store";
-
+import Loading from "./Loading";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
-import {
-  ShoppingCartIcon,
-  MenuIcon,
-  SearchIcon,
-  UserIcon,
-} from "@heroicons/react/outline";
+import { ShoppingCartIcon, MenuIcon, UserIcon } from "@heroicons/react/outline";
 import Cart from "./Cart";
 
 const Pheader = () => {
@@ -46,7 +41,7 @@ const Pheader = () => {
             </Link>
             <div className="flex items-center justify-end w-full">
               {status === "loading" ? (
-                "Loading"
+                <Loading />
               ) : session?.user ? (
                 <Menu as="div" className="relative inline-block text-left">
                   <div>
@@ -147,6 +142,26 @@ const Pheader = () => {
               </div>
             </div>
           </div>
+          <nav
+            className={`${
+              isMenuOpen ? "" : "hidden"
+            } sm:flex sm:justify-center sm:items-center mt-4`}
+          >
+            <div className="flex flex-col sm:flex-row">
+              <div className="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0">
+                <Link href="/">Home</Link>
+              </div>
+              <div className="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0">
+                <Link href="/products">Shop</Link>
+              </div>
+              <div className="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0">
+                <Link href="/category">Categories</Link>
+              </div>
+              <div className="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0">
+                <Link href="/about">About</Link>
+              </div>
+            </div>
+          </nav>
         </div>
       </header>
       <Cart isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} />

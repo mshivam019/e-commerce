@@ -105,7 +105,7 @@ export default function LoginScreen() {
                   required: "Please enter password",
                   minLength: {
                     value: 6,
-                    message: "password is more than 5 chars",
+                    message: "password should be more than 5 chars",
                   },
                 })}
                 className="w-full border rounded-md pl-10 pr-4 py-2 focus:border-green-500 focus:outline-none focus:shadow-outline"
@@ -127,7 +127,7 @@ export default function LoginScreen() {
                   validate: (value) => value === getValues("password"),
                   minLength: {
                     value: 6,
-                    message: "confirm password is more than 5 chars",
+                    message: "Passwords do not match",
                   },
                 })}
               />
@@ -147,9 +147,14 @@ export default function LoginScreen() {
                 Register
               </button>
             </div>
-            <div className="mt-3 text-blue-600 hover:underline sm:mx-3 sm:mt-0">
+            <div>
               already have an account? &nbsp;
-              <Link href={`/login`}>Login</Link>
+              <Link
+                href={`/login`}
+                className="mt-3 text-blue-600 hover:underline sm:mx-3 sm:mt-0"
+              >
+                Login
+              </Link>
             </div>
           </form>
         </Container>

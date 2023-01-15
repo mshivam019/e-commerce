@@ -6,6 +6,7 @@ import Container from "../../components/Container";
 import Footer from "../../components/Footer";
 import Pheader from "../../components/Pheader";
 import { getError } from "../../utils/error";
+import Loading from "../../components/Loading";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -49,7 +50,9 @@ function OrderHistoryScreen() {
         <Container>
           <h1 className="mb-4 text-xl">Order History</h1>
           {loading ? (
-            <div>Loading...</div>
+            <div>
+              <Loading />
+            </div>
           ) : error ? (
             <div className="alert-error">{error}</div>
           ) : (

@@ -90,7 +90,7 @@ export default function ShippingScreen() {
                   required: "Please enter address",
                   minLength: {
                     value: 3,
-                    message: "Address is more than 2 chars",
+                    message: "Address should be more than 2 chars",
                   },
                 })}
               />

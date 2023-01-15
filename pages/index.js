@@ -7,9 +7,11 @@ import Header from "../components/Header";
 import Hero from "../components/Hero";
 import Pagination from "../components/Pagination";
 import Products from "../components/Products";
+import Loading from "../components/Loading";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 12;
   useEffect(() => {
@@ -22,11 +24,12 @@ export default function Home() {
         const user = await app.logIn(credentials);
         const allProducts = await user.functions.getAllProducts();
         setProducts(() => allProducts);
+        setLoading(false);
       } catch (error) {
         console.error(error);
       }
     })();
-  }, []);
+  }, [loading]);
   const lastPostIndex = currentPage * postsPerPage;
   const firstPostIndex = lastPostIndex - postsPerPage;
   const currentPosts = products.slice(firstPostIndex, lastPostIndex);
@@ -40,6 +43,11 @@ export default function Home() {
         <Header />
         <Container>
           <Hero />
+          {loading && (
+            <div className="text-center">
+              <Loading />
+            </div>
+          )}
           <Products products={currentPosts} />
           <Pagination
             totalPosts={products.length}

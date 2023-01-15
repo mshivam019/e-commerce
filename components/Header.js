@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
 import { Store } from "../utils/Store";
 import * as Realm from "realm-web";
-
+import Loading from "./Loading";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 import {
@@ -87,7 +87,7 @@ const Header = () => {
             </Link>
             <div className="flex items-center justify-end w-full">
               {status === "loading" ? (
-                "Loading"
+                <Loading />
               ) : session?.user ? (
                 <Menu as="div" className="relative inline-block text-left">
                   <div>

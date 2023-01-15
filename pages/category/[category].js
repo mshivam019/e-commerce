@@ -7,9 +7,11 @@ import Header from "../../components/Header";
 import Container from "../../components/Container";
 import Footer from "../../components/Footer";
 import Products from "../../components/Products";
+import Loading from "../../components/Loading";
 
 const CategoryDetails = () => {
   const [category, setCategory] = useState();
+  const [loading, setLoading] = useState(true);
   const { query } = useRouter();
 
   useEffect(() => {
@@ -25,12 +27,13 @@ const CategoryDetails = () => {
             query.category
           );
           setCategory(() => oneCategory);
+          setLoading(false);
         } catch (error) {
           console.error(error);
         }
       }
     })();
-  }, [query]);
+  }, [query, loading]);
 
   return (
     <>
@@ -43,6 +46,11 @@ const CategoryDetails = () => {
           <div className="bg-white w-full min-h-screen">
             <Header />
             <Container>
+              {loading && (
+                <div className="text-center">
+                  <Loading />
+                </div>
+              )}
               <Products products={category} />
             </Container>
             <Footer />

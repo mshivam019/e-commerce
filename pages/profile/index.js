@@ -105,7 +105,7 @@ export default function ProfileScreen() {
                 {...register("password", {
                   minLength: {
                     value: 6,
-                    message: "password is more than 5 chars",
+                    message: "password should be more than 5 chars",
                   },
                 })}
               />
@@ -124,7 +124,7 @@ export default function ProfileScreen() {
                   validate: (value) => value === getValues("password"),
                   minLength: {
                     value: 6,
-                    message: "confirm password is more than 5 chars",
+                    message: "Passwords do not match",
                   },
                 })}
               />

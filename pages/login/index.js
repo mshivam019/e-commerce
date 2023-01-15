@@ -4,15 +4,16 @@ import Container from "../../components/Container";
 import Footer from "../../components/Footer";
 import Pheader from "../../components/Pheader";
 import { useForm } from "react-hook-form";
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { signIn, useSession } from "next-auth/react";
 import { getError } from "../../utils/error";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
+import Loading from "../../components/Loading";
 
 export default function LoginScreen() {
   const { data: session } = useSession();
-
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { redirect } = router.query;
 
@@ -28,6 +29,7 @@ export default function LoginScreen() {
     formState: { errors },
   } = useForm();
   const submitHandler = async ({ email, password }) => {
+    setLoading(true);
     try {
       const result = await signIn("credentials", {
         redirect: false,
@@ -37,9 +39,11 @@ export default function LoginScreen() {
       if (result.error) {
         toast.error(result.error);
       }
+      setLoading(false);
     } catch (err) {
       toast.error(getError(err));
     }
+    return loading;
   };
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
@@ -50,6 +54,11 @@ export default function LoginScreen() {
       <div className="bg-white w-full min-h-screen">
         <Pheader />
         <Container>
+          {loading && (
+            <div className="text-center">
+              <Loading />
+            </div>
+          )}
           <form
             className="mx-auto max-w-screen-md"
             onSubmit={handleSubmit(submitHandler)}
@@ -83,7 +92,7 @@ export default function LoginScreen() {
                   required: "Please enter password",
                   minLength: {
                     value: 6,
-                    message: "password is more than 5 chars",
+                    message: "password should be more than 5 chars",
                   },
                 })}
                 className="w-full border rounded-md pl-10 pr-4 py-2 focus:border-green-500 focus:outline-none focus:shadow-outline"
@@ -100,9 +109,12 @@ export default function LoginScreen() {
                 Login
               </button>
             </div>
-            <div className="mt-3 text-blue-600 hover:underline sm:mx-3 sm:mt-0">
+            <div>
               Don&apos;t have an account? &nbsp;
-              <Link href={`/register?redirect=${redirect || "/"}`}>
+              <Link
+                href={`/register?redirect=${redirect || "/"}`}
+                className="mt-3 text-blue-600 hover:underline sm:mx-3 sm:mt-0"
+              >
                 Register
               </Link>
             </div>
