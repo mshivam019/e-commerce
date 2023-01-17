@@ -168,7 +168,7 @@ const Pheader = () => {
                   className="text-gray-600 hover:text-gray-500 focus:outline-none focus:text-gray-500"
                   aria-label="toggle menu"
                 >
-                  <MenuIcon className="h-5 w-5" />
+                  <MenuIcon className="h-5 w-5 dark:text-green-500" />
                 </button>
               </div>
               {renderThemeChanger()}
