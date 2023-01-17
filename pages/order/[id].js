@@ -177,7 +177,7 @@ function OrderScreen() {
         <title>E-commerce - Order</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="bg-white w-full min-h-screen">
+      <div className="dark:bg-zinc-900 bg-white w-full min-h-screen">
         <Pheader />
         <Container>
           <h1 className="mb-4 text-xl">{`Order ${orderId}`}</h1>
@@ -187,7 +187,7 @@ function OrderScreen() {
             <div className="alert-error">{error}</div>
           ) : (
             <div className="grid md:grid-cols-4 md:gap-5">
-              <div className="overflow-x-auto md:col-span-3">
+              <div className="overflow-x-auto md:col-span-3 bg-zinc-200 dark:bg-zinc-800">
                 <div className="card  p-5">
                   <h2 className="mb-2 text-lg">Shipping Address</h2>
                   <div>
@@ -255,8 +255,8 @@ function OrderScreen() {
                 </div>
               </div>
               <div>
-                <div className="card  p-5">
-                  <h2 className="mb-2 text-lg">Order Summary</h2>
+                <div className="card  p-5 bg-zinc-200 dark:bg-zinc-800">
+                  <h2 className="mb-2 text-lg ">Order Summary</h2>
                   <ul>
                     <li>
                       <div className="mb-2 flex justify-between">
@@ -287,7 +287,7 @@ function OrderScreen() {
                         {isPending ? (
                           <div>Loading...</div>
                         ) : (
-                          <div className="w-full">
+                          <div className="w-full dark:bg-zinc-800 rounded-md">
                             <PayPalButtons
                               createOrder={createOrder}
                               onApprove={onApprove}

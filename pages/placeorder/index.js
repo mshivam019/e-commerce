@@ -71,7 +71,7 @@ export default function PlaceOrderScreen() {
         <title>E-commerce - Place Order</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="bg-white w-full min-h-screen">
+      <div className="dark:bg-zinc-900 bg-white w-full min-h-screen">
         <Pheader />
         <Container>
           <CheckOutWizard activeStep={3} />
@@ -89,7 +89,7 @@ export default function PlaceOrderScreen() {
           ) : (
             <div className="grid md:grid-cols-4 md:gap-5">
               <div className="overflow-x-auto md:col-span-3">
-                <div className="rounded-lg w-full shadow-lg p-5">
+                <div className="rounded-lg w-full dark:bg-zinc-800 shadow-lg p-5">
                   <h2 className="mb-2 text-lg">Shipping Address</h2>
                   <div>
                     {shippingAddress.fullName}, {shippingAddress.address},{" "}
@@ -100,14 +100,14 @@ export default function PlaceOrderScreen() {
                     <Link href="/shipping">Edit</Link>
                   </div>
                 </div>
-                <div className="rounded-lg w-full shadow-lg p-5">
-                  <h2 className="mb-2 text-lg">Payment Method</h2>
+                <div className="rounded-lg w-full dark:bg-zinc-800 shadow-lg p-5 ">
+                  <h2 className="mb-2 text-lg ">Payment Method</h2>
                   <div>{paymentMethod}</div>
                   <div className="mt-3 text-blue-600 hover:underline sm:mx-3 sm:mt-0">
                     <Link href="/payment">Edit</Link>
                   </div>
                 </div>
-                <div className="rounded-lg w-full shadow-lg overflow-x-auto p-5">
+                <div className="rounded-lg w-full dark:bg-zinc-800 shadow-lg overflow-x-auto p-5">
                   <h2 className="mb-2 text-lg">Order Items</h2>
                   <table className="min-w-full">
                     <thead className="border-b">
@@ -151,7 +151,7 @@ export default function PlaceOrderScreen() {
                 </div>
               </div>
               <div>
-                <div className="rounded-lg w-full shadow-lg p-5  p-5">
+                <div className="rounded-lg w-full shadow-lg p-5  p-5 dark:bg-zinc-800">
                   <h2 className="mb-2 text-lg">Order Summary</h2>
                   <ul>
                     <li>

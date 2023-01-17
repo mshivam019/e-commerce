@@ -55,7 +55,7 @@ export default function LoginScreen() {
         <title>E-commerce - Register</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="bg-white w-full min-h-screen">
+      <div className="dark:bg-zinc-900 bg-white w-full min-h-screen">
         <Header />
         <Container>
           <form
@@ -67,7 +67,8 @@ export default function LoginScreen() {
               <label htmlFor="name">Name</label>
               <input
                 type="text"
-                className="w-full border rounded-md pl-10 pr-4 py-2 focus:border-green-500 focus:outline-none focus:shadow-outline"
+                placeholder="Enter your name"
+                className="w-full dark:border-gray-700 border rounded-md pl-10 pr-4 py-2 focus:border-green-500 focus:outline-none focus:shadow-outline"
                 id="name"
                 autoFocus
                 {...register("name", {
@@ -83,6 +84,7 @@ export default function LoginScreen() {
               <label htmlFor="email">Email</label>
               <input
                 type="email"
+                placeholder="Enter your email"
                 {...register("email", {
                   required: "Please enter email",
                   pattern: {
@@ -90,7 +92,7 @@ export default function LoginScreen() {
                     message: "Please enter valid email",
                   },
                 })}
-                className="w-full border rounded-md pl-10 pr-4 py-2 focus:border-green-500 focus:outline-none focus:shadow-outline"
+                className="w-full dark:border-gray-700 border rounded-md pl-10 pr-4 py-2 focus:border-green-500 focus:outline-none focus:shadow-outline"
                 id="email"
               ></input>
               {errors.email && (
@@ -101,6 +103,7 @@ export default function LoginScreen() {
               <label htmlFor="password">Password</label>
               <input
                 type="password"
+                placeholder="Enter your password"
                 {...register("password", {
                   required: "Please enter password",
                   minLength: {
@@ -108,7 +111,7 @@ export default function LoginScreen() {
                     message: "password should be more than 5 chars",
                   },
                 })}
-                className="w-full border rounded-md pl-10 pr-4 py-2 focus:border-green-500 focus:outline-none focus:shadow-outline"
+                className="w-full dark:border-gray-700 border rounded-md pl-10 pr-4 py-2 focus:border-green-500 focus:outline-none focus:shadow-outline"
                 id="password"
                 autoFocus
               ></input>
@@ -119,8 +122,9 @@ export default function LoginScreen() {
             <div className="mb-4">
               <label htmlFor="confirmPassword">Confirm Password</label>
               <input
-                className="w-full border rounded-md pl-10 pr-4 py-2 focus:border-green-500 focus:outline-none focus:shadow-outline"
+                className="w-full dark:border-gray-700 border rounded-md pl-10 pr-4 py-2 focus:border-green-500 focus:outline-none focus:shadow-outline"
                 type="password"
+                placeholder="Enter your password again"
                 id="confirmPassword"
                 {...register("confirmPassword", {
                   required: "Please enter confirm password",

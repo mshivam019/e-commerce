@@ -51,7 +51,7 @@ export default function LoginScreen() {
         <title>E-commerce - Login</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="bg-white w-full min-h-screen">
+      <div className=" dark:bg-zinc-900 bg-white w-full min-h-screen">
         <Pheader />
         <Container>
           {loading && (
@@ -67,7 +67,7 @@ export default function LoginScreen() {
             <div className="mb-4">
               <label htmlFor="email">Email</label>
               <input
-                className="w-full border rounded-md pl-10 pr-4 py-2 focus:border-green-500 focus:outline-none focus:shadow-outline"
+                className="w-full border dark:border-gray-700 rounded-md pl-10 pr-4 py-2 focus:border-green-500 focus:outline-none focus:shadow-outline"
                 type="email"
                 {...register("email", {
                   required: "Please enter email",
@@ -95,7 +95,7 @@ export default function LoginScreen() {
                     message: "password should be more than 5 chars",
                   },
                 })}
-                className="w-full border rounded-md pl-10 pr-4 py-2 focus:border-green-500 focus:outline-none focus:shadow-outline"
+                className="w-full dark:border-gray-700 border rounded-md pl-10 pr-4 py-2 focus:border-green-500 focus:outline-none focus:shadow-outline"
                 id="password"
                 placeholder="Enter Password"
                 autoFocus

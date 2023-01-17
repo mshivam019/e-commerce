@@ -29,7 +29,7 @@ const ProductDetail = ({ product }) => {
     if (count > 0) setCount(count - 1);
   };
   return (
-    <div className="md:flex md:items-center">
+    <div className="md:flex md:items-center dark:bg-zinc-800">
       <div className="w-full h-64 md:w-1/2 lg:h-96 relative">
         <Image
           src={product.image}
@@ -40,11 +40,18 @@ const ProductDetail = ({ product }) => {
         />
       </div>
       <div className="w-full max-w-lg mx-auto mt-5 md:ml-8 md:mt-0 md:w-1/2">
-        <h3 className="text-gray-700 uppercase text-lg">{product.name}</h3>
-        <span className="text-gray-500 mt-3">${product.price}</span>
+        <h3 className="dark:text-gray-200 text-gray-700 uppercase text-lg">
+          {product.name}
+        </h3>
+        <span className="dark:text-gray-300 text-gray-500 mt-3">
+          ${product.price}
+        </span>
         <hr className="my-3" />
         <div className="mt-2">
-          <label className="text-gray-700 text-sm" htmlFor="count">
+          <label
+            className="dark:text-gray-200 text-gray-700 text-sm"
+            htmlFor="count"
+          >
             Count:
           </label>
           <div className="flex items-center mt-1">
@@ -52,14 +59,16 @@ const ProductDetail = ({ product }) => {
               className="text-gray-500 focus:outline-none focus:text-gray-600"
               onClick={handleup}
             >
-              <PlusCircleIcon className="w-5 h-5" />
+              <PlusCircleIcon className="w-5 h-5 dark:text-gray-200" />
             </button>
-            <span className="text-gray-700 text-lg mx-2">{count}</span>
+            <span className="dark:text-gray-200 text-gray-700 text-lg mx-2">
+              {count}
+            </span>
             <button
               className="text-gray-500 focus:outline-none focus:text-gray-600"
               onClick={handledown}
             >
-              <MinusCircleIcon className="w-5 h-5" />
+              <MinusCircleIcon className="w-5 h-5 dark:text-gray-200" />
             </button>
           </div>
         </div>

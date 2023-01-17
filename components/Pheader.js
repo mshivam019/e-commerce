@@ -3,16 +3,47 @@ import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import Cookies from "js-cookie";
 import { ToastContainer } from "react-toastify";
+import { useTheme } from "next-themes";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
 import { Store } from "../utils/Store";
 import Loading from "./Loading";
 import { Menu, Transition } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/solid";
+import { ChevronDownIcon, SunIcon, MoonIcon } from "@heroicons/react/solid";
 import { ShoppingCartIcon, MenuIcon, UserIcon } from "@heroicons/react/outline";
 import Cart from "./Cart";
 
 const Pheader = () => {
+  const { systemTheme, theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const renderThemeChanger = () => {
+    if (!mounted) return null;
+
+    const currentTheme = theme === "system" ? systemTheme : theme;
+
+    if (currentTheme === "dark") {
+      return (
+        <SunIcon
+          className="w-6 h-6 pl-1 text-yellow-500 "
+          role="button"
+          onClick={() => setTheme("light")}
+        />
+      );
+    } else {
+      return (
+        <MoonIcon
+          className="w-6 h-6 pl-1 text-gray-900 "
+          role="button"
+          onClick={() => setTheme("dark")}
+        />
+      );
+    }
+  };
   const { status, data: session } = useSession();
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
@@ -32,7 +63,7 @@ const Pheader = () => {
   return (
     <>
       <header>
-        <div className="container mx-auto px-6 py-3">
+        <div className="dark:bg-zinc-900 container mx-auto px-6 py-3">
           <div className="flex items-center justify-between">
             <Link href="/">
               <div className="w-full text-green-500 text-2xl font-semibold cursor-pointer">
@@ -45,7 +76,7 @@ const Pheader = () => {
               ) : session?.user ? (
                 <Menu as="div" className="relative inline-block text-left">
                   <div>
-                    <Menu.Button className="inline-flex w-full justify-center bg-white px-4 py-2 text-sm font-medium text-green-600 hover:bg-gray-50 focus:outline-none  ">
+                    <Menu.Button className="inline-flex w-full justify-center px-4 py-2 text-sm font-medium text-green-600 focus:outline-none ">
                       {session.user.name}
                       <ChevronDownIcon
                         className="-mr-1 ml-2 h-5 w-5"
@@ -63,7 +94,7 @@ const Pheader = () => {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md dark:bg-zinc-800 bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <div className="px-1 py-1 ">
                         <Menu.Item>
                           {({ active }) => (
@@ -72,7 +103,7 @@ const Pheader = () => {
                               className={`${
                                 active
                                   ? "bg-green-600 text-white"
-                                  : "text-gray-900"
+                                  : "text-gray-900 dark:text-green-500"
                               } group flex w-full items-center rounded-md px-2 py-1 text-sm`}
                             >
                               Profile
@@ -86,7 +117,7 @@ const Pheader = () => {
                               className={`${
                                 active
                                   ? "bg-green-600 text-white"
-                                  : "text-gray-900"
+                                  : "text-gray-900 dark:text-green-500"
                               } group flex w-full items-center rounded-md px-2 py-1 text-sm`}
                             >
                               Order History
@@ -100,7 +131,7 @@ const Pheader = () => {
                               className={`${
                                 active
                                   ? "bg-green-600 text-white"
-                                  : "text-gray-900"
+                                  : "text-gray-900 dark:text-green-500"
                               } group flex w-full items-center rounded-md px-2 py-1 text-sm`}
                             >
                               Sign Out
@@ -113,16 +144,16 @@ const Pheader = () => {
                 </Menu>
               ) : (
                 <Link href="/login">
-                  <span className="inline-flex text-gray-600 hover:underline pr-2 mx-4 sm:mx-0">
+                  <span className="dark:text-green-500 inline-flex text-gray-600 hover:underline pr-2 mx-4 sm:mx-0">
                     LOGIN
-                    <UserIcon className="h-5 w-5" />
+                    <UserIcon className="h-5 w-5 dark:text-green-500" />
                   </span>
                 </Link>
               )}
               <button className="text-gray-600 focus:outline-none px-0 mx-4 sm:mx-0">
                 <ShoppingCartIcon
                   onClick={() => setIsCartOpen(!isCartOpen)}
-                  className="h-5 w-5"
+                  className="h-5 w-5 dark:text-green-500"
                 />
               </button>
               {cartItemsCount > 0 && (
@@ -140,6 +171,7 @@ const Pheader = () => {
                   <MenuIcon className="h-5 w-5" />
                 </button>
               </div>
+              {renderThemeChanger()}
             </div>
           </div>
           <nav
@@ -148,16 +180,16 @@ const Pheader = () => {
             } sm:flex sm:justify-center sm:items-center mt-4`}
           >
             <div className="flex flex-col sm:flex-row">
-              <div className="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0">
+              <div className="dark:text-gray-300 mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0">
                 <Link href="/">Home</Link>
               </div>
-              <div className="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0">
+              <div className="dark:text-gray-300 mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0">
                 <Link href="/products">Shop</Link>
               </div>
-              <div className="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0">
+              <div className="dark:text-gray-300 mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0">
                 <Link href="/category">Categories</Link>
               </div>
-              <div className="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0">
+              <div className="dark:text-gray-300 mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0">
                 <Link href="/about">About</Link>
               </div>
             </div>
@@ -165,7 +197,7 @@ const Pheader = () => {
         </div>
       </header>
       <Cart isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} />
-      <ToastContainer position="bottom-center" limit={1} />
+      <ToastContainer theme="colored" position="bottom-center" limit={1} />
     </>
   );
 };

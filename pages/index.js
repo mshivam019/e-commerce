@@ -34,12 +34,12 @@ export default function Home() {
   const firstPostIndex = lastPostIndex - postsPerPage;
   const currentPosts = products.slice(firstPostIndex, lastPostIndex);
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+    <div className=" flex flex-col items-center justify-center min-h-screen py-2">
       <Head>
         <title>E-commerce</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="bg-white w-full min-h-screen">
+      <div className="dark:bg-zinc-900 bg-white w-full min-h-screen">
         <Header />
         <Container>
           <Hero />

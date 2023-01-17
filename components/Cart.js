@@ -36,14 +36,16 @@ const Cart = ({ isCartOpen, setIsCartOpen }) => {
     <div
       className={`${
         isCartOpen ? "translate-x-0 ease-out" : "translate-x-full ease-in"
-      } fixed right-0 top-0 max-w-xs w-full h-full px-6 py-4 transition duration-300 transform overflow-y-auto bg-white border-l-2 border-gray-300 z-20`}
+      } fixed right-0 top-0 max-w-xs w-full h-full px-6 py-4 transition duration-300 transform overflow-y-auto dark:bg-zinc-800 bg-white border-l-2 dark:border-gray-900 border-gray-300 z-20`}
     >
       <div className="flex items-center justify-between">
-        <h3 className="text-2xl font-medium text-gray-700">Your cart</h3>
+        <h3 className="dark:text-gray-200 text-2xl font-medium text-gray-700">
+          Your cart
+        </h3>
         <button className="text-gray-600 focus:outline-none">
           <XIcon
             onClick={() => setIsCartOpen(!isCartOpen)}
-            className="h-5 w-5"
+            className="h-5 w-5 dark:text-green-500"
           />
         </button>
       </div>
@@ -73,31 +75,35 @@ const Cart = ({ isCartOpen, setIsCartOpen }) => {
                     alt={item.name}
                   />
                   <div className="mx-3">
-                    <h3 className="text-sm text-gray-600">{item.name}</h3>
+                    <h3 className="text-sm dark:text-gray-300 text-gray-600">
+                      {item.name}
+                    </h3>
                     <div className="flex items-center mt-2">
                       <button
                         className="text-gray-500 focus:outline-none focus:text-gray-600"
                         onClick={() => updateCartHandler(item)}
                       >
-                        <PlusCircleIcon className="h-5 w-5" />
+                        <PlusCircleIcon className="h-5 w-5 dark:text-gray-200" />
                       </button>
-                      <span className="text-gray-700 mx-2">
+                      <span className="dark:text-gray-300 text-gray-700 mx-2">
                         {item.quantity}{" "}
                       </span>
                       <button
                         className="text-gray-500 focus:outline-none focus:text-gray-600"
                         onClick={() => removeItemHandler(item)}
                       >
-                        <XIcon className="h-5 w-5" />
+                        <XIcon className="h-5 w-5 dark:text-gray-200" />
                       </button>
                     </div>
                   </div>
                 </div>
-                <span className="text-gray-600">${item.price}</span>
+                <span className="text-gray-600 dark:text-gray-300">
+                  ${item.price}
+                </span>
               </div>
             </div>
           ))}
-          <div className="mt-8">
+          <div className="mt-9">
             <form
               className="flex items-center justify-center"
               onSubmit={handleSubmit}
@@ -107,7 +113,7 @@ const Cart = ({ isCartOpen, setIsCartOpen }) => {
                 type="text"
                 id="first"
                 name="first"
-                placeholder="Add promocode"
+                placeholder=" Add promocode"
                 value={first}
                 onChange={(event) => setFirst(event.target.value)}
               />

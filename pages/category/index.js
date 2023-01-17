@@ -34,7 +34,7 @@ export default function index() {
         <title>E-Commerce - Categories</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="bg-white w-full min-h-screen">
+      <div className="dark:bg-zinc-900 bg-white w-full min-h-screen">
         <Header />
         <Container>
           {loading && (

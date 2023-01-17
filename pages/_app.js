@@ -2,6 +2,8 @@ import "tailwindcss/tailwind.css";
 import { StoreProvider } from "../utils/Store";
 import { useRouter } from "next/router";
 import { SessionProvider, useSession } from "next-auth/react";
+import "../styles/globals.css";
+import { ThemeProvider } from "next-themes";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
@@ -11,10 +13,14 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
         <PayPalScriptProvider deferLoading={true}>
           {Component.auth ? (
             <Auth adminOnly={Component.auth.adminOnly}>
-              <Component {...pageProps} />
+              <ThemeProvider enableSystem={true} attribute="class">
+                <Component {...pageProps} />
+              </ThemeProvider>
             </Auth>
           ) : (
-            <Component {...pageProps} />
+            <ThemeProvider enableSystem={true} attribute="class">
+              <Component {...pageProps} />
+            </ThemeProvider>
           )}
         </PayPalScriptProvider>
       </StoreProvider>

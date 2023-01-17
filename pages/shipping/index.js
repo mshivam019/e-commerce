@@ -58,7 +58,7 @@ export default function ShippingScreen() {
         <title>E-commerce - Shipping</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="bg-white w-full min-h-screen">
+      <div className="dark:bg-zinc-900 bg-white w-full min-h-screen">
         <Pheader />
         <Container>
           <CheckOutWizard activeStep={1} />
@@ -70,7 +70,8 @@ export default function ShippingScreen() {
             <div className="mb-4">
               <label htmlFor="fullName">Full Name</label>
               <input
-                className="w-full border rounded-md pl-10 pr-4 py-2 focus:border-green-500 focus:outline-none focus:shadow-outline"
+                placeholder="Enter your name"
+                className="w-full border rounded-md dark:border-gray-700 pl-10 pr-4 py-2 focus:border-green-500 focus:outline-none focus:shadow-outline"
                 id="fullName"
                 autoFocus
                 {...register("fullName", {
@@ -84,7 +85,8 @@ export default function ShippingScreen() {
             <div className="mb-4">
               <label htmlFor="address">Address</label>
               <input
-                className="w-full border rounded-md pl-10 pr-4 py-2 focus:border-green-500 focus:outline-none focus:shadow-outline"
+                placeholder="Enter your address"
+                className="w-full border dark:border-gray-700 rounded-md pl-10 pr-4 py-2 focus:border-green-500 focus:outline-none focus:shadow-outline"
                 id="address"
                 {...register("address", {
                   required: "Please enter address",
@@ -101,7 +103,8 @@ export default function ShippingScreen() {
             <div className="mb-4">
               <label htmlFor="city">City</label>
               <input
-                className="w-full border rounded-md pl-10 pr-4 py-2 focus:border-green-500 focus:outline-none focus:shadow-outline"
+                placeholder="Enter your city"
+                className="w-full border dark:border-gray-700 rounded-md pl-10 pr-4 py-2 focus:border-green-500 focus:outline-none focus:shadow-outline"
                 id="city"
                 {...register("city", {
                   required: "Please enter city",
@@ -115,7 +118,8 @@ export default function ShippingScreen() {
               <label htmlFor="postalCode">Postal Code</label>
               <input
                 type="number"
-                className="w-full border rounded-md pl-10 pr-4 py-2 focus:border-green-500 focus:outline-none focus:shadow-outline"
+                placeholder="Enter your postal code"
+                className="w-full border dark:border-gray-700 rounded-md pl-10 pr-4 py-2 focus:border-green-500 focus:outline-none focus:shadow-outline"
                 id="postalCode"
                 {...register("postalCode", {
                   required: "Please enter postal code",
@@ -128,7 +132,8 @@ export default function ShippingScreen() {
             <div className="mb-4">
               <label htmlFor="country">Country</label>
               <input
-                className="w-full border rounded-md pl-10 pr-4 py-2 focus:border-green-500 focus:outline-none focus:shadow-outline"
+                placeholder="Enter your country"
+                className="w-full border dark:border-gray-700 rounded-md pl-10 pr-4 py-2 focus:border-green-500 focus:outline-none focus:shadow-outline"
                 id="country"
                 {...register("country", {
                   required: "Please enter country",
@@ -139,7 +144,7 @@ export default function ShippingScreen() {
               )}
             </div>
             <div className="mb-4 flex justify-between">
-              <button className="ml-3 flex items-center px-3 py-2 bg-green-600 text-white text-sm uppercase font-medium rounded hover:bg-green-500 focus:outline-none focus:bg-green-500">
+              <button className="ml-3 flex  items-center px-3 py-2 bg-green-600 text-white text-sm uppercase font-medium rounded hover:bg-green-500 focus:outline-none focus:bg-green-500">
                 Next
               </button>
             </div>

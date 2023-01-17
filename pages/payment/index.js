@@ -47,7 +47,7 @@ export default function PaymentScreen() {
         <title>E-commerce - Payment</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="bg-white w-full min-h-screen">
+      <div className="dark:bg-zinc-900 bg-white w-full min-h-screen">
         <Pheader />
         <Container>
           <CheckOutWizard activeStep={2} />

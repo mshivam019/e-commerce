@@ -10,12 +10,16 @@ export default function index() {
         <title>About</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="bg-white w-full min-h-screen">
+      <div className="dark:bg-zinc-900 bg-white w-full min-h-screen">
         <Header />
         <Container>
-          <h3 className="text-gray-700 text-2xl font-medium block mt-16">
+          <h3 className="dark:text-gray-200 text-gray-700 text-2xl font-medium block mt-16">
             About
           </h3>
+          <p className="dark:text-gray-200 text-gray-700 text-1xl font-small block mt-16">
+            This was my project to learn mongodb realm and Tailwind css. I hope
+            you liked it.
+          </p>
         </Container>
         <Footer />
       </div>
